@@ -1,0 +1,94 @@
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'maven'
+  apply plugin: 'signing'
+
+  version = '5.2.1-SNAPSHOT'
+  group = 'org.gillius'
+
+	//While there is are javadocs or "sources" for this project, Maven central repo requires both.
+  task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+  }
+
+  task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+  }
+
+  artifacts {
+    archives javadocJar, sourcesJar
+  }
+
+  signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+  }
+
+  afterEvaluate { Project project ->
+    Closure pomDefinition = {
+      name project.pomInfo.name
+      packaging 'jar'
+      description project.pomInfo.description
+      url 'https://github.com/gillius/jalleg-rt'
+
+      scm {
+        connection 'scm:git:https://github.com/gillius/jalleg-rt.git'
+        developerConnection 'scm:git:git@github.com:gillius/jalleg-rt.git'
+        url 'https://github.com/gillius/jalleg-rt'
+      }
+
+      licenses {
+        license {
+          name 'Allegro License'
+          url 'https://github.com/gillius/jalleg-rt/LICENSE'
+          comments 'Copyright Allegro 5 Development Team'
+          distribution 'repo'
+        }
+      }
+
+      developers {
+        developer {
+          id 'jpw'
+          name 'Jason Winnebeck'
+          roles {
+            role 'Packager'
+          }
+        }
+      }
+    }
+
+    boolean deployable = project.hasProperty("ossrhUsername") && project.hasProperty("ossrhPassword")
+
+    if (deployable) {
+      uploadArchives {
+        repositories {
+          mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+              authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+              authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project pomDefinition
+          }
+        }
+      }
+    }
+
+    install {
+      repositories.mavenInstaller {
+        pom.project pomDefinition
+      }
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.14.1'
+}
