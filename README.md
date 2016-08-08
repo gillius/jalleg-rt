@@ -15,7 +15,7 @@ that links dynamically only to glibc), but if one exists it can easily be
 packaged as well.
 
 The current version of Allegro included is 5.2.1. The library is downloaded
-from http://download.gna.org/allegro/allegro-bin/5.2.1/allegro-mingw-gcc5.3.0-x64-5.2.1.zip
+from http://download.gna.org/allegro/allegro-bin/5.2.1/allegro-mingw-gcc5.3.0-x64-static-5.2.1.zip
 
 The latest release on Maven Central is 0.1, which actually corresponds to Allegro 5.2.0.
 Future versions will match Allegro's version. To use the currently released version:
