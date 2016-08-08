@@ -17,21 +17,23 @@ packaged as well.
 The current version of Allegro included is 5.2.1. The library is downloaded
 from http://download.gna.org/allegro/allegro-bin/5.2.1/allegro-mingw-gcc5.3.0-x64-static-5.2.1.zip
 
-The latest release on Maven Central is 0.1, which actually corresponds to Allegro 5.2.0.
-Future versions will match Allegro's version. To use the currently released version:
+The latest release on Maven Central is 5.2.1, corresponding to the Allegro release 5.2.1.
 
 Maven:
 ```xml
 <dependency>
   <groupId>org.gillius</groupId>
   <artifactId>jalleg-rt-win32-x86-64</artifactId>
-  <version>0.1</version>
+  <version>5.2.1</version>
 </dependency>
 ```
 
 Gradle:
 ```groovy
 dependencies {
-    compile 'org.gillius:jalleg-rt-win32-x86-64:0.1'
+    compile 'org.gillius:jalleg-rt-win32-x86-64:5.2.1'
 }
 ```
+
+A previous version 0.1 was published that corresponded to Allegro version 5.2.0.
+All future releases will follow the version of Allegro.
