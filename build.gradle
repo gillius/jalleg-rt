@@ -42,7 +42,7 @@ subprojects {
       licenses {
         license {
           name 'Allegro License'
-          url 'https://github.com/gillius/jalleg-rt/LICENSE'
+          url 'https://github.com/gillius/jalleg-rt/blob/master/LICENSE'
           comments 'Copyright Allegro 5 Development Team'
           distribution 'repo'
         }
