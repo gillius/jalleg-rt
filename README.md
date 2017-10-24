@@ -14,24 +14,26 @@ platforms as there is no known static build of Allegro for Linux (i.e. only
 that links dynamically only to glibc), but if one exists it can easily be
 packaged as well.
 
-The current version of Allegro included is 5.2.1. The library is downloaded
-from http://download.gna.org/allegro/allegro-bin/5.2.1/allegro-mingw-gcc5.3.0-x64-static-5.2.1.zip
+The current version of Allegro included is 5.2.3. The library is downloaded
+from https://github.com/liballeg/allegro5/releases/download/5.2.3.0/allegro-x86_64-w64-mingw32-gcc-7.2.0-posix-seh-static-5.2.3.1.zip
+Although the file version is 5.2.3.1, the release tag and documented version on
+the website is 5.2.3, so I have called this release 5.2.3.
 
-The latest release on Maven Central is 5.2.1, corresponding to the Allegro release 5.2.1.
+The latest release on Maven Central is 5.2.3, corresponding to the Allegro release 5.2.3.
 
 Maven:
 ```xml
 <dependency>
   <groupId>org.gillius</groupId>
   <artifactId>jalleg-rt-win32-x86-64</artifactId>
-  <version>5.2.1</version>
+  <version>5.2.3</version>
 </dependency>
 ```
 
 Gradle:
 ```groovy
 dependencies {
-    compile 'org.gillius:jalleg-rt-win32-x86-64:5.2.1'
+    compile 'org.gillius:jalleg-rt-win32-x86-64:5.2.3'
 }
 ```
 
